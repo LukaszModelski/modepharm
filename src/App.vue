@@ -1,25 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h2 v-if="this.dataLoaded">Analiza ryzyka</h2>
-    <div v-if="dataLoaded" v-html="posts['analiza-ryzyka'].content.rendered" class="content">
-
-    </div>
-    <!-- <div v-if="dataLoaded" class="content">
-      {{ posts['analiza-ryzyka'].content.rendered }}
-    </div> -->
+    <h1>Modepharm</h1>
+    <router-link to="/page/test">Page</router-link>
+    <router-link to="/hello">Hello</router-link>
+    <hr>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import HelloWorld from './components/HelloWorld.vue'
+import Page from './components/Page.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    Page
   },
   data () {
     return {
