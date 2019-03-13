@@ -1,16 +1,15 @@
 <template>
   <div id="app">
     <h1>Modepharm</h1>
-    <nav v-if="pagesLoaded">
+    <nav v-if="menuLoaded && pagesLoaded">
       <router-link  
-        v-for="(page, index) in pagesArray" 
-        :key="page.id" 
+        v-for="item in menu" 
+        :key="item.page_id" 
         :to="{
-          path: '/page/' + index,
-          query: page
+          path: '/page/' + item.page_id
         }"
       >
-        {{page.title.rendered}}
+        {{item.title}}
       </router-link>
     </nav>
     <hr>
@@ -33,9 +32,10 @@ export default {
     return {
         posts: Object,
         pages: Object,
-        pagesArray: Array,
+        menu: Array,
+        postsLoaded: false,
         pagesLoaded: false,
-        postsLoaded: false
+        menuLoaded: false,
     }
   },
   methods: {
@@ -52,36 +52,26 @@ export default {
               this.posts = Object.assign(obj, this.posts);
           }
           this.postsLoaded = true;
-          // do in next thick, vue must see !isLoading is true
-          // this.$nextTick(()=>{
-          //     eventBus.$emit('data-loaded',true);
-          // })
-          // console.log('Data loaded!');
       })
       .catch((error) => {
           console.log(error)
       })
     },
     loadPages(){
-      axios.get('http://www.modepharm.pl/cms/wp-json/wp/v2/pages/?per_page=100')
+      axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/pages')
       .then((response) => {
-          // reverse data because of adding this to object in next step
-          this.pagesArray = response.data;
-          response.data = response.data.reverse();
-          this.pages = [];
-          for(let i=0;i<response.data.length;i++){
-              let obj = {
-                  [response.data[i].slug]: response.data[i]
-              };
-              this.pages = Object.assign(obj, this.pages);
-          }
+          this.pages = response.data;
           this.pagesLoaded = true;
-          // this.dataLoaded = true;
-          // do in next thick, vue must see !isLoading is true
-          // this.$nextTick(()=>{
-          //     eventBus.$emit('data-loaded',true);
-          // })
-          // console.log('Data loaded!');
+      })
+      .catch((error) => {
+          console.log(error)
+      })
+    },
+    loadMenu(){
+      axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/menu')
+      .then((response) => {
+          this.menu= response.data;
+          this.menuLoaded = true;
       })
       .catch((error) => {
           console.log(error)
@@ -91,6 +81,7 @@ export default {
   created(){
     this.loadPosts();
     this.loadPages();
+    this.loadMenu();
   }
 }
 </script>

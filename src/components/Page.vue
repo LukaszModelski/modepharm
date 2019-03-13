@@ -1,8 +1,7 @@
 <template>
   <div id="page-single" class="page" v-if="this.$parent.pagesLoaded">
-      <!-- <p>page index: {{ $route.params.index }}</p> -->
-      <p>Page title: {{pageObject.title.rendered}}</p>
-      <div class="wyswyg-content" v-html="pageObject.content.rendered"></div>
+      <p>Page title: {{pageObject.post_title}}</p>
+      <div class="wyswyg-content" v-html="pageObject.post_content"></div>
   </div>
 </template>
 
@@ -19,21 +18,14 @@
         },
         watch: {
             '$route' (to, from) {
-                this.pageObject = this.$parent.pagesArray[this.$route.params.index];
-                // console.log(this.pageObject.title.rendered);
+                this.pageObject = this.$parent.pages[this.$route.params.id];
             }
         },
         created: function () {
-            // this.pageObject =  this.$parent.pagesArray[this.$route.params.index];
-            // this.pageObject =  {
-            //     test: 'dewde'
-            // };
-            this.pageObject = this.$parent.pagesArray[this.$route.params.index];
-            // console.log(this.pageObject.title.rendered);
+            this.pageObject = this.$parent.pages[this.$route.params.id];
         },
         mounted: function () {
-            // this.pageObject =  this.$parent.pagesArray[this.$route.params.index];
-            // console.log(this.$route.query);
+
         }
     }
 </script>
