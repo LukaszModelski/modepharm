@@ -2,15 +2,14 @@
   <div id="app">
     <h1>Modepharm</h1>
     <nav v-if="menuLoaded && pagesLoaded">
-      <router-link  
-        v-for="item in menu" 
-        :key="item.page_id" 
-        :to="{
-          path: '/page/' + item.page_id
-        }"
-      >
-        {{item.title}}
-      </router-link>
+      <div v-for="item in menu" :key="item.page_id">
+        <router-link  
+          :to="{ path: '/page/' + item.page_id }"
+          class="nav-item"
+        >
+          {{item.title}}
+        </router-link>
+      </div>
     </nav>
     <hr>
     <router-view></router-view>
@@ -91,17 +90,19 @@ export default {
   text-align: center;
   margin-top: 60px;
   nav{
-    a{
-      margin: 0 10px;
-      text-decoration: none;
-      color: #000;
-      &:hover{
-        // font-weight: 700;
+    div{
+      a{
+        margin: 0 10px;
+        text-decoration: none;
+        color: #000;
+        &:hover{
+          // font-weight: 700;
+          color: blue;
+        }
+      }
+      a.router-link-active{
         color: blue;
       }
-    }
-    a.router-link-active{
-      color: blue;
     }
   }
 }
