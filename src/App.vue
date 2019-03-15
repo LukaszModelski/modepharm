@@ -3,12 +3,23 @@
     <h1>Modepharm</h1>
     <nav v-if="menuLoaded && pagesLoaded">
       <div v-for="item in menu" :key="item.page_id">
-        <router-link  
+        <router-link 
+          v-if="item.parent == 0"
           :to="{ path: '/page/' + item.page_id }"
           class="nav-item"
         >
           {{item.title}}
         </router-link>
+        <div class="dropdown">
+          <router-link 
+            v-for="subitem in menu" :key="subitem.page_id"
+            v-if="subitem.parent == item.menu_id"
+            :to="{ path: '/page/' + subitem.page_id }"
+            class="nav-item"
+          >
+            {{subitem.title}}
+          </router-link>
+        </div>
       </div>
     </nav>
     <hr>
@@ -87,6 +98,7 @@ export default {
 
 <style lang="scss">
 #app {
+  font-size: 16px;
   text-align: center;
   margin-top: 60px;
   nav{
@@ -94,6 +106,7 @@ export default {
       a{
         margin: 0 10px;
         text-decoration: none;
+        font-weight: 700;
         color: #000;
         &:hover{
           // font-weight: 700;
@@ -102,6 +115,11 @@ export default {
       }
       a.router-link-active{
         color: blue;
+      }
+    }
+    .dropdown{
+      a{
+        font-weight: 400;
       }
     }
   }
