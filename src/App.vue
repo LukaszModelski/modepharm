@@ -1,42 +1,31 @@
 <template>
   <div id="app">
     <h1>Modepharm</h1>
-    <nav v-if="menuLoaded && pagesLoaded">
-      <div v-for="item in menu" :key="item.page_id">
-        <router-link 
-          v-if="item.parent == 0"
-          :to="{ path: '/page/' + item.page_id }"
-          class="nav-item"
-        >
-          {{item.title}}
-        </router-link>
-        <div class="dropdown">
-          <router-link 
-            v-for="subitem in menu" :key="subitem.page_id"
-            v-if="subitem.parent == item.menu_id"
-            :to="{ path: '/page/' + subitem.page_id }"
-            class="nav-item"
-          >
-            {{subitem.title}}
-          </router-link>
-        </div>
-      </div>
-    </nav>
+    <template v-if="menuLoaded && pagesLoaded">
+      <Menu :menu="menu"/>
+    </template>
     <hr>
-    <router-view></router-view>
+    <template v-if="pagesLoaded">
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <router-view></router-view> 
+      </transition>
+    </template>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import HelloWorld from './components/HelloWorld.vue'
 import Page from './components/Page.vue'
+import Menu from './components/Menu.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    Page
+    Page,
+    Menu
   },
   data () {
     return {
@@ -45,7 +34,7 @@ export default {
         menu: Array,
         postsLoaded: false,
         pagesLoaded: false,
-        menuLoaded: false,
+        menuLoaded: false
     }
   },
   methods: {
@@ -80,7 +69,7 @@ export default {
     loadMenu(){
       axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/menu')
       .then((response) => {
-          this.menu= response.data;
+          this.menu = response.data;
           this.menuLoaded = true;
       })
       .catch((error) => {
@@ -97,31 +86,28 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-size: 16px;
-  text-align: center;
-  margin-top: 60px;
-  nav{
-    div{
-      a{
-        margin: 0 10px;
-        text-decoration: none;
-        font-weight: 700;
-        color: #000;
-        &:hover{
-          // font-weight: 700;
-          color: blue;
-        }
-      }
-      a.router-link-active{
-        color: blue;
-      }
-    }
-    .dropdown{
-      a{
-        font-weight: 400;
-      }
-    }
+body{
+  position: absolute;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  #app {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 60px;
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
 }
 </style>
