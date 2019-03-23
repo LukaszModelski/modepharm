@@ -1,6 +1,6 @@
 <template>
     <div id="menu">
-        <div v-on:click="toggleMenu" class="close">
+        <div v-on:click="toggleMenuAndOpacity" class="close">
             X
         </div>
         <nav>
@@ -42,14 +42,11 @@
             }
         },
         methods: {
-            toggleMenu(){
+            toggleMenuAndOpacity(){
                 const menu = document.getElementById('menu');
-                if(this.menuClosed) {
-                    menu.style.right = "0px";
-                } else {
-                    menu.style.right = "-400px";
-                }
-                this.menuClosed = !this.menuClosed;
+                const content = document.getElementById('main-content');
+                menu.classList.toggle('active');
+                content.classList.toggle('menu-active');
             }
         },
         watch: {
@@ -62,8 +59,12 @@
 </script>
 
 <style  lang="scss" scoped>
+#menu.active{
+    right: 0px;
+}
 #menu{
     position: fixed;
+    z-index: 10;
     top: 0;
     right: -400px;
     height: 100vh;

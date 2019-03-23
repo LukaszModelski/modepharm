@@ -25,6 +25,12 @@
         created: function () {
             this.pageObject = this.$parent.pages[this.$route.params.id];
         },
+        destroyed(){
+            const menu = document.getElementById('menu');
+            const content = document.getElementById('main-content');
+            menu.classList.remove('active');
+            content.classList.remove('menu-active');
+        }
     }
 </script>
 

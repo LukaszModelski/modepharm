@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    <h1>Modepharm</h1>
     <template v-if="menuLoaded && pagesLoaded">
       <Menu :menu="menu"/>
     </template>
-    <hr>
-    <template v-if="pagesLoaded">
-      <transition
-        name="fade"
-        mode="out-in"
-      >
-        <router-view></router-view> 
-      </transition>
-    </template>
+    <div id="main-content">
+      <h1>Modepharm</h1>
+      <hr>
+      <template v-if="pagesLoaded">
+        <!-- <transition name="fade" mode="out-in"> -->
+          <router-view :key="$route.path"></router-view> 
+        <!-- </transition> -->
+      </template>
+    </div>
   </div>
 </template>
 
@@ -97,8 +96,16 @@ body{
     font-size: 16px;
     text-align: center;
     margin-top: 60px;
+    #main-content.menu-active{
+      opacity: 0.25;
+    }
+    #main-content{
+      transition: opacity 0.3s ease-in;
+    }
   }
 }
+
+// transition effect
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.3s;
