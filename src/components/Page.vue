@@ -19,11 +19,19 @@
         },
         watch: {
             '$route' (to, from) {
-                this.pageObject = this.$parent.pages[this.$route.params.id];
+                if(this.$route.params.slug2){
+                this.pageObject = this.$parent.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
+                } else {
+                    this.pageObject = this.$parent.pages[this.$route.params.slug];
+                }
             }
         },
         created: function () {
-            this.pageObject = this.$parent.pages[this.$route.params.id];
+            if(this.$route.params.slug2){
+                this.pageObject = this.$parent.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
+            } else {
+                this.pageObject = this.$parent.pages[this.$route.params.slug];
+            }
         },
         destroyed(){
             const menu = document.getElementById('menu');

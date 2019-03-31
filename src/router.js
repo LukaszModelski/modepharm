@@ -6,7 +6,8 @@ Vue.use(Router);
 
 export default new Router({
     routes: [
-        { path: '/', redirect: '/page/14' },
-        { path: '/page/:id', component: Page }
+        // { path: '/', redirect: '/page/14' },
+        { path: '/:slug/', component: Page },
+        { path: '/:slug/:slug2', component: Page }
     ]
 });

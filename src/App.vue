@@ -7,9 +7,7 @@
       <h1>Modepharm</h1>
       <hr>
       <template v-if="pagesLoaded">
-        <!-- <transition name="fade" mode="out-in"> -->
           <router-view :key="$route.path"></router-view> 
-        <!-- </transition> -->
       </template>
     </div>
   </div>
