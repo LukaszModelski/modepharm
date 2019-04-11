@@ -1,5 +1,5 @@
 <template>
-    <div id="page-single" class="page" v-if="this.$parent.pagesLoaded">
+    <div id="page-single" class="page" v-if="this.$parent.fullDataLoaded">
         <p>Page id: {{this.$route.params.id}}</p>
         <p>Page title: {{pageObject.post_title}}</p>
         <div class="wyswyg-content" v-html="pageObject.post_content"></div>
@@ -20,17 +20,17 @@
         watch: {
             '$route' (to, from) {
                 if(this.$route.params.slug2){
-                this.pageObject = this.$parent.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
+                this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
                 } else {
-                    this.pageObject = this.$parent.pages[this.$route.params.slug];
+                    this.pageObject = this.$parent.fullData.pages[this.$route.params.slug];
                 }
             }
         },
         created: function () {
             if(this.$route.params.slug2){
-                this.pageObject = this.$parent.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
+                this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
             } else {
-                this.pageObject = this.$parent.pages[this.$route.params.slug];
+                this.pageObject = this.$parent.fullData.pages[this.$route.params.slug];
             }
         },
         destroyed(){

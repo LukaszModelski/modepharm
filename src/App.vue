@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <template v-if="menuLoaded && pagesLoaded">
-      <Menu :menu="menu"/>
+    <template v-if="fullDataLoaded">
+      <Menu :menu="fullData.menu"/>
     </template>
     <div id="main-content">
       <h1>Modepharm</h1>
       <hr>
-      <template v-if="pagesLoaded">
+      <template v-if="fullDataLoaded">
           <router-view :key="$route.path"></router-view> 
       </template>
     </div>
@@ -26,15 +26,27 @@ export default {
   },
   data () {
     return {
+        fullData: Object,
         posts: Object,
         pages: Object,
         menu: Array,
+        fullDataLoaded: false,
         postsLoaded: false,
         pagesLoaded: false,
         menuLoaded: false
     }
   },
   methods: {
+    loadFullData(){
+      axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/all')
+      .then((response) => {
+          this.fullData = response.data;
+          this.fullDataLoaded = true;
+      })
+      .catch((error) => {
+          console.log(error)
+      })
+    },
     loadPosts(){
       axios.get('http://www.modepharm.pl/cms/wp-json/wp/v2/posts/?per_page=100')
       .then((response) => {
@@ -75,6 +87,7 @@ export default {
     }
   },
   created(){
+    this.loadFullData();
     this.loadPosts();
     this.loadPages();
     this.loadMenu();

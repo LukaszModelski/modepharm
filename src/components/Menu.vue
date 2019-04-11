@@ -6,7 +6,6 @@
         <nav>
             <div class="menu" >
                 <div v-for="item in menu" v-if="item.parent == 0" class="single-item">
-
                     <router-link 
                         v-if="item.type == 'page'"
                         :to="{ path: '/' + item.full_slug }"
