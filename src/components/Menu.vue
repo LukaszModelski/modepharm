@@ -5,7 +5,10 @@
         </div>
         <nav>
             <div class="menu" >
-                <div v-for="item in menu" v-if="item.parent == 0" class="single-item">
+                <div class="single-item parent">
+                    <router-link :to="{path: '/'}" exact class="nav-item">Strona główna</router-link>
+                </div>
+                <div v-for="item in menu" v-if="item.parent == 0" class="single-item parent">
                     <router-link 
                         v-if="item.type == 'page'"
                         :to="{ path: '/' + item.full_slug }"
@@ -99,8 +102,11 @@
             font-weight: 700;
             }
         }
+        .parent{
+            margin-top: 10px;
+        }
         .dropdown{
-            padding-bottom: 10px;
+            // padding-bottom: 10px;
             a{
                 display: block;
                 font-weight: 400;

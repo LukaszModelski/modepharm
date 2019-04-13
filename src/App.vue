@@ -15,25 +15,23 @@
 
 <script>
 import axios from 'axios';
-import Page from './components/Page.vue'
+import Home from './components/Home.vue'
+import Category from './components/Category.vue'
 import Menu from './components/Menu.vue'
+import Page from './components/Page.vue'
 
 export default {
   name: 'app',
   components: {
-    Page,
-    Menu
+    Home,
+    Category,
+    Menu,
+    Page
   },
   data () {
     return {
         fullData: Object,
-        posts: Object,
-        pages: Object,
-        menu: Array,
         fullDataLoaded: false,
-        postsLoaded: false,
-        pagesLoaded: false,
-        menuLoaded: false
     }
   },
   methods: {
@@ -46,51 +44,10 @@ export default {
       .catch((error) => {
           console.log(error)
       })
-    },
-    loadPosts(){
-      axios.get('http://www.modepharm.pl/cms/wp-json/wp/v2/posts/?per_page=100')
-      .then((response) => {
-          // reverse data because of adding this to object in next step
-          response.data = response.data.reverse();
-          this.posts = [];
-          for(let i=0;i<response.data.length;i++){
-              let obj = {
-                  [response.data[i].slug]: response.data[i]
-              };
-              this.posts = Object.assign(obj, this.posts);
-          }
-          this.postsLoaded = true;
-      })
-      .catch((error) => {
-          console.log(error)
-      })
-    },
-    loadPages(){
-      axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/pages')
-      .then((response) => {
-          this.pages = response.data;
-          this.pagesLoaded = true;
-      })
-      .catch((error) => {
-          console.log(error)
-      })
-    },
-    loadMenu(){
-      axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/menu')
-      .then((response) => {
-          this.menu = response.data;
-          this.menuLoaded = true;
-      })
-      .catch((error) => {
-          console.log(error)
-      })
     }
   },
   created(){
     this.loadFullData();
-    this.loadPosts();
-    this.loadPages();
-    this.loadMenu();
   }
 }
 </script>
@@ -104,7 +61,7 @@ body{
   width: 100%;
   overflow-x: hidden;
   #app {
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
     margin-top: 60px;
     #main-content.menu-active{
