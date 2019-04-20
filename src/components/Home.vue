@@ -3,7 +3,7 @@
 
         <section class="grid-tiles">
 
-            <div v-for="item in fullData.menu" v-if="item.parent == 0" class="tile">
+            <div v-for="item in fullData.menu2" v-if="item.parent == 0" class="tile">
                 <router-link 
                     v-if="item.type == 'page'"
                     :to="{ path: '/' + item.full_slug }"
@@ -25,7 +25,7 @@
         },
         data () {
             return {
-                fullData: Object,
+                fullData: Object
             }
         },
         watch: {
@@ -33,6 +33,18 @@
         },
         created: function () {
             this.fullData = this.$parent.fullData;
+
+            //test
+            // fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+            // .then(response => {
+            //     console.log(response.json());
+            // });
+            // .then(json => console.log(json))
+
+            fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+            .then(response => response.json())
+            .then(json => console.log(json))
+
         },
         destroyed(){
             const menu = document.getElementById('menu');

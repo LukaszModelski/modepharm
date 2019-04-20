@@ -1,10 +1,16 @@
 <template>
     <div id="page-category" v-if="this.$parent.fullDataLoaded">
-
+        <h1>Category page: {{categoryObject.title}}</h1>
         <section class="grid-tiles-category">
-
-            category page
-
+            <div v-for="item in categoryObject['child-pages']" class="tile">
+                <router-link 
+                    v-if="item.type == 'page'"
+                    :to="{ path: '/' + item.full_slug }"
+                    class="nav-item"
+                >
+                    {{item.title}}
+                </router-link>
+            </div>
         </section>
     </div>
 </template>
@@ -18,6 +24,7 @@
         data () {
             return {
                 fullData: Object,
+                categoryObject: Object
             }
         },
         watch: {
@@ -25,6 +32,7 @@
         },
         created: function () {
             this.fullData = this.$parent.fullData;
+            this.categoryObject = this.fullData.menu2[this.$route.params.slug]
         },
         destroyed(){
             const menu = document.getElementById('menu');
@@ -37,14 +45,14 @@
 
 <style scoped>
 
-.grid-tiles{
+.grid-tiles-category{
     display: flex;
 }
 .tile{
-    /* width: 25%; */
+    max-width: 200px;
     margin: 1rem;
     padding: 4rem 1rem;
-    background-color: red;
+    background-color: green;
 }
 
 </style>

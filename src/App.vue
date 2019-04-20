@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <template v-if="fullDataLoaded">
-      <Menu :menu="fullData.menu"/>
+      <Menu :menu="fullData.menu" :menu2="fullData.menu2"/>
     </template>
     <div id="main-content">
       <h1>Modepharm</h1>
       <hr>
       <template v-if="fullDataLoaded">
+        <transition name="fade" mode="out-in">
           <router-view :key="$route.path"></router-view> 
+        </transition>
       </template>
     </div>
   </div>

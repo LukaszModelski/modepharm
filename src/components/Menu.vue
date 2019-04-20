@@ -4,24 +4,25 @@
             X
         </div>
         <nav>
-            <div class="menu" >
+            <div class="menu">
                 <div class="single-item parent">
                     <router-link :to="{path: '/'}" exact class="nav-item">Strona główna</router-link>
                 </div>
-                <div v-for="item in menu" v-if="item.parent == 0" class="single-item parent">
+                <div v-for="(item, key) in menu2" class="single-item parent">
                     <router-link 
                         v-if="item.type == 'page'"
                         :to="{ path: '/' + item.full_slug }"
                         class="nav-item"
+                        exact
                     >
                     {{item.title}}
                     </router-link>
                     <div class="dropdown">
                         <router-link 
-                            v-for="subitem in menu" :key="subitem.page_id"
-                            v-if="subitem.parent == item.menu_id"
+                            v-for="subitem in item['child-pages']" :key="subitem.page_id"
                             :to="{ path: '/' + subitem.full_slug }"
                             class="nav-item"
+                            exact
                         >
                             {{subitem.title}}
                         </router-link>
@@ -36,7 +37,8 @@
     export default {
         name: 'Menu',
         props: {
-            menu: Array
+            menu: Array,
+            menu2: Object
         },
         data () {
             return {

@@ -20,7 +20,7 @@
         watch: {
             '$route' (to, from) {
                 if(this.$route.params.slug2){
-                this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
+                    this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
                 } else {
                     this.pageObject = this.$parent.fullData.pages[this.$route.params.slug];
                 }
