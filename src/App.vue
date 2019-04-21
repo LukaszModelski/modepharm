@@ -5,12 +5,12 @@
     </template>
     <div id="main-content">
       <h1>Modepharm</h1>
+      <!-- <h1>Erat ut Sapien, mus curae, morbi dictum duis aenean auctor at Dictum.</h1> -->
+      <p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
       <hr>
-      <template v-if="fullDataLoaded">
-        <transition name="fade" mode="out-in">
-          <router-view :key="$route.path"></router-view> 
-        </transition>
-      </template>
+      <transition name="fade" mode="out-in">
+        <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
+      </transition>
     </div>
   </div>
 </template>
@@ -42,10 +42,16 @@ export default {
       .then((response) => {
           this.fullData = response.data;
           this.fullDataLoaded = true;
+          window.addEventListener('keyup', this.closeMenu);
       })
       .catch((error) => {
           console.log(error)
       })
+    },
+    closeMenu(event){
+      if(event.key === "Escape"){
+        this.closeMenuMixin();
+      }
     }
   },
   created(){
@@ -55,16 +61,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import 'styles/fonts';
+@import 'styles/vars';
+@import 'styles/global';
 body{
   position: absolute;
+  overflow-x: hidden;
   margin: 0;
-  padding: 20px;
   box-sizing: border-box;
   width: 100%;
-  overflow-x: hidden;
+  padding: 20px;
+  color: $gray;
   #app {
     font-size: 15px;
-    text-align: center;
     margin-top: 60px;
     #main-content.menu-active{
       opacity: 0.25;
@@ -74,6 +83,7 @@ body{
     }
   }
 }
+
 
 // transition effect
 .fade-enter-active,

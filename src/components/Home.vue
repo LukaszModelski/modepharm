@@ -33,24 +33,9 @@
         },
         created: function () {
             this.fullData = this.$parent.fullData;
-
-            //test
-            // fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-            // .then(response => {
-            //     console.log(response.json());
-            // });
-            // .then(json => console.log(json))
-
-            fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-            .then(response => response.json())
-            .then(json => console.log(json))
-
         },
         destroyed(){
-            const menu = document.getElementById('menu');
-            const content = document.getElementById('main-content');
-            menu.classList.remove('active');
-            content.classList.remove('menu-active');
+            this.closeMenuMixin();
         }
     }
 </script>

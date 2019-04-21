@@ -32,13 +32,10 @@
         },
         created: function () {
             this.fullData = this.$parent.fullData;
-            this.categoryObject = this.fullData.menu2[this.$route.params.slug]
+            this.categoryObject = this.fullData.menu2[this.$route.params.slug];
         },
         destroyed(){
-            const menu = document.getElementById('menu');
-            const content = document.getElementById('main-content');
-            menu.classList.remove('active');
-            content.classList.remove('menu-active');
+            this.closeMenuMixin();
         }
     }
 </script>

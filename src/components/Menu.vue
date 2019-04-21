@@ -42,7 +42,7 @@
         },
         data () {
             return {
-                menuClosed: true
+                menuClosed: true,
             }
         },
         methods: {
@@ -57,12 +57,14 @@
             
         },
         created: function () {
-
+            
         }
     }
 </script>
 
 <style  lang="scss" scoped>
+@import '../styles/vars';
+
 #menu.active{
     right: 0px;
 }
@@ -74,7 +76,7 @@
     height: 100vh;
     width: 400px;
     max-width: 100%;
-    background-color: green;
+    background-color: $gray;
     transition: right 0.3s ease-in;
     padding: 30px;
     box-sizing: border-box;
