@@ -40,16 +40,30 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../styles/vars';
 
 .grid-tiles{
     display: flex;
+    flex-wrap: wrap;
 }
 .tile{
-    /* width: 25%; */
+    width: 100%;
+
+    
     margin: 1rem;
+    box-sizing: border-box;
     padding: 4rem 1rem;
     background-color: red;
+
+    @media screen and (min-width: $tablet-max) {
+        width: calc(50% - 2rem);
+    }
+    @media screen and (min-width: $mobile-max) {
+        width: calc(33.3% - 2rem);
+    }
+    
 }
 
 </style>
+

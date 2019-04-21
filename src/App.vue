@@ -4,13 +4,16 @@
       <Menu :menu="fullData.menu" :menu2="fullData.menu2"/>
     </template>
     <div id="main-content">
-      <h1>Modepharm</h1>
-      <!-- <h1>Erat ut Sapien, mus curae, morbi dictum duis aenean auctor at Dictum.</h1> -->
-      <p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
-      <hr>
-      <transition name="fade" mode="out-in">
-        <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
-      </transition>
+      <div class="container">
+        <h1 class="company-name">Modepharm</h1>
+        <h1>Walidacja, kwalifikacje i jakość.</h1>
+        <!-- <h1>Erat ut Sapien, mus curae, morbi dictum duis aenean auctor at Dictum.</h1> -->
+        <p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
+        <hr>
+        <transition name="fade" mode="out-in">
+          <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
+        </transition>
+      </div>
     </div>
   </div>
 </template>
