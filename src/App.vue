@@ -33,6 +33,12 @@ export default {
     Menu,
     Page
   },
+  metaInfo: {
+    title: 'Modepharm',
+    meta: [
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
+  },
   data () {
     return {
         fullData: Object,
@@ -73,7 +79,6 @@ body{
   margin: 0;
   box-sizing: border-box;
   width: 100%;
-  padding: 20px;
   color: $gray;
   #app {
     font-size: 15px;

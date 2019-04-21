@@ -3,15 +3,19 @@
 //layout
 .container{
     margin: 0 auto;
-    max-width: 1920px;
-    padding: 0 4rem;
-
-    @media screen and (max-width: $tablet-max) {
+    box-sizing: border-box;
+    padding: 0 1rem;
+    
+    @media screen and (min-width: $tablet) {
+        max-width: $tablet;
         padding: 0 2rem;
     }
-    @media screen and (max-width: $mobile-max) {
-        padding: 0 1rem;
-        
+    @media screen and (min-width: $desktop-small) {
+        max-width: $desktop-small;
+    }
+    @media screen and (min-width: $desktop-big) {
+        max-width: $desktop-big;
+        padding: 0 4rem;
     }
 }
 

@@ -3,7 +3,7 @@
 
         <section class="grid-tiles">
 
-            <div v-for="item in fullData.menu2" v-if="item.parent == 0" class="tile">
+            <div ref="tile" v-for="item in fullData.menu2" v-if="item.parent == 0" class="tile">
                 <router-link 
                     v-if="item.type == 'page'"
                     :to="{ path: '/' + item.full_slug }"
@@ -25,10 +25,17 @@
         },
         data () {
             return {
-                fullData: Object
+                fullData: Object,
+                tileHeight: ''
             }
         },
+        computed: {
+
+        },
         watch: {
+
+        },
+        methods:{
 
         },
         created: function () {
@@ -46,23 +53,26 @@
 .grid-tiles{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .tile{
     width: 100%;
-
-    
-    margin: 1rem;
+    height: calc((100vw - 2rem)/1.079);
+    margin: 1rem 0;
     box-sizing: border-box;
-    padding: 4rem 1rem;
     background-color: red;
-
-    @media screen and (min-width: $tablet-max) {
-        width: calc(50% - 2rem);
+    @media screen and (min-width: $tablet) {
+        width: 324px;
+        height: 300px;
     }
-    @media screen and (min-width: $mobile-max) {
-        width: calc(33.3% - 2rem);
+    @media screen and (min-width: $desktop-small) {
+        width: 309px;
+        height: 286px;
     }
-    
+    @media screen and (min-width: $desktop-big) {
+        width: 410px;
+        height: 380px;
+    }
 }
 
 </style>
