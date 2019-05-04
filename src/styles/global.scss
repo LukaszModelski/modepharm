@@ -20,6 +20,10 @@
 }
 
 // typography
+body{
+    font-family: 'Source Sans Pro';
+    box-sizing: border-box;
+}
 h1{
     font-size: 3rem;
     font-family: 'Source Sans Pro';
@@ -36,4 +40,7 @@ p{
     line-height: 1.5rem;
     font-family: 'Source Sans Pro';
     font-weight: 300;
+}
+a{
+    text-decoration: none;
 }

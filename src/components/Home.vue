@@ -7,9 +7,9 @@
                 <router-link 
                     v-if="item.type == 'page'"
                     :to="{ path: '/' + item.full_slug }"
-                    class="nav-item"
+                    class="tile__nav-item"
                 >
-                {{item.title}}
+                <h2>{{item.title}}</h2>
                 </router-link>
             </div>
 
@@ -49,6 +49,7 @@
 
 <style lang="scss" scoped>
 @import '../styles/vars';
+@import '../styles/global';
 
 .grid-tiles{
     display: flex;
@@ -59,6 +60,8 @@
     width: 100%;
     height: calc((100vw - 2rem)/1.079);
     margin: 1rem 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
     box-sizing: border-box;
     background-color: red;
     @media screen and (min-width: $tablet) {
@@ -72,6 +75,36 @@
     @media screen and (min-width: $desktop-big) {
         width: 410px;
         height: 380px;
+    }
+}
+.tile__nav-item{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    &:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.4;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/tile-cross.svg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    h2{
+        font-size: 1.1rem;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: $white;
     }
 }
 
