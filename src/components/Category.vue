@@ -1,6 +1,6 @@
 <template>
     <div id="page-category" v-if="this.$parent.fullDataLoaded">
-        <h1>Category page: {{categoryObject.title}}</h1>
+        <h1>{{categoryObject.title}}</h1>
         <section class="grid-tiles grid-tiles--category">
             <div v-for="item in categoryObject['child-pages']" class="tile" v-bind:style="{ backgroundImage: 'url(' + item['tile_img'] + ')' }">
                 <router-link 
@@ -46,14 +46,5 @@
 @import '../styles/vars';
 @import '../styles/global';
 @import '../styles/grid-tiles';
-/* .grid-tiles--category{
-    display: flex;
-}
-.tile{
-    max-width: 200px;
-    margin: 1rem;
-    padding: 4rem 1rem;
-    background-color: green;
-} */
 
 </style>

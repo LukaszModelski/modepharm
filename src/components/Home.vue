@@ -1,5 +1,7 @@
 <template>
     <div id="page-home" v-if="this.$parent.fullDataLoaded">
+        <h1>{{fullData['home-page']['post_title']}}</h1>
+        <p>{{fullData['home-page']['post_content']}}</p>
         <section class="grid-tiles">
             <div ref="tile" v-for="item in fullData.menu" v-if="item.parent == 0" class="tile" v-bind:style="{ backgroundImage: 'url(' + item['tile_img'] + ')' }">
                 <router-link 
@@ -46,10 +48,10 @@
 </script>
 
 <style lang="scss" scoped>
+
 @import '../styles/vars';
 @import '../styles/global';
 @import '../styles/grid-tiles';
-
 
 </style>
 
