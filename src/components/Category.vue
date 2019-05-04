@@ -1,15 +1,16 @@
 <template>
     <div id="page-category" v-if="this.$parent.fullDataLoaded">
         <h1>Category page: {{categoryObject.title}}</h1>
-        <section class="grid-tiles-category">
-            <div v-for="item in categoryObject['child-pages']" class="tile">
+        <section class="grid-tiles grid-tiles--category">
+            <div v-for="item in categoryObject['child-pages']" class="tile" v-bind:style="{ backgroundImage: 'url(' + item['tile_img'] + ')' }">
                 <router-link 
                     v-if="item.type == 'page'"
                     :to="{ path: '/' + item.full_slug }"
-                    class="nav-item"
+                    class="tile__nav-item"
                 >
-                    {{item.title}}
+                    <h2>{{item.title}}</h2>
                 </router-link>
+                <div class="tile__color" v-bind:style="{ backgroundColor: item['tile_color'] }"></div>
             </div>
         </section>
     </div>
@@ -32,7 +33,7 @@
         },
         created: function () {
             this.fullData = this.$parent.fullData;
-            this.categoryObject = this.fullData.menu2[this.$route.params.slug];
+            this.categoryObject = this.fullData.menu[this.$route.params.slug];
         },
         destroyed(){
             this.closeMenuMixin();
@@ -40,9 +41,12 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-.grid-tiles-category{
+@import '../styles/vars';
+@import '../styles/global';
+@import '../styles/grid-tiles';
+/* .grid-tiles--category{
     display: flex;
 }
 .tile{
@@ -50,6 +54,6 @@
     margin: 1rem;
     padding: 4rem 1rem;
     background-color: green;
-}
+} */
 
 </style>

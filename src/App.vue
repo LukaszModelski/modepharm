@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <template v-if="fullDataLoaded">
-      <Menu :menu="fullData.menu" :menu2="fullData.menu2"/>
+      <Menu :menu="fullData.menu"/>
     </template>
     <div id="main-content">
       <div class="container">
@@ -81,7 +81,8 @@ body{
   color: $gray;
   #app {
     font-size: 15px;
-    margin-top: 60px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
     #main-content.menu-active{
       opacity: 0.25;
     }

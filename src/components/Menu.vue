@@ -8,7 +8,7 @@
                 <div class="single-item parent">
                     <router-link :to="{path: '/'}" exact class="nav-item">Strona główna</router-link>
                 </div>
-                <div v-for="(item, key) in menu2" class="single-item parent">
+                <div v-for="(item, key) in menu" class="single-item parent">
                     <router-link 
                         v-if="item.type == 'page'"
                         :to="{ path: '/' + item.full_slug }"
@@ -37,8 +37,7 @@
     export default {
         name: 'Menu',
         props: {
-            menu: Array,
-            menu2: Object
+            menu: Object
         },
         data () {
             return {
