@@ -5,7 +5,9 @@
     </template>
     <div id="main-content">
       <div class="container">
-        <h1 class="company-name">Modepharm</h1>
+        <router-link :to="{ path: '/' }">
+          <h1 class="company-name">Modepharm</h1>
+        </router-link>
         <transition name="fade" mode="out-in">
           <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
         </transition>

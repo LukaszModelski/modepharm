@@ -15,8 +15,9 @@
                         class="nav-item"
                         exact
                     >
-                    {{item.title}}
+                        {{item.title}}
                     </router-link>
+                    <div class="arrow-head" v-on:click="toggleDropdown"></div>
                     <div class="dropdown">
                         <router-link 
                             v-for="subitem in item['child-pages']" :key="subitem.page_id"
@@ -50,6 +51,10 @@
                 const content = document.getElementById('main-content');
                 menu.classList.toggle('active');
                 content.classList.toggle('menu-active');
+            },
+            toggleDropdown() {
+                // TO DO
+                console.log(this.$parent);
             }
         },
         watch: {
@@ -89,30 +94,61 @@
     nav{
         div{
             a{
+                display: block;
                 margin: 0 10px;
                 text-decoration: none;
                 font-weight: 700;
-                color: #000;
-            &:hover{
-                color: blue;
+                color: #fff;
+                &:hover{
+                    color: $pink;
+                }
             }
-        }
             a.router-link-active{
-                color: blue;
+                color: $pink;
             }
             p{
-            margin: 0;
-            font-weight: 700;
+                margin: 0;
+                font-weight: 700;
             }
         }
         .parent{
-            margin-top: 10px;
-        }
-        .dropdown{
-            // padding-bottom: 10px;
-            a{
-                display: block;
-                font-weight: 400;
+            position: relative;
+            padding: 15px 20px 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            .arrow-head {
+                position: absolute;
+                right: 5px;
+                top: 18px;
+                width: 15px;
+                height: 15px;
+                color: #fff;
+                background-image: url('../assets/arrow-head-down-white.svg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                &:hover {
+                    background-image: url('../assets/arrow-head-down-pink.svg');
+                }
+            }
+            &.dropdown-open{
+               .arrow-head {
+                   background-image: url('../assets/arrow-head-up-white.svg');
+                   &:hover {
+                       background-image: url('../assets/arrow-head-up-pink.svg');
+                   }
+               }
+               .dropdown{
+                   display: block;
+               }
+            }
+            .dropdown{
+                display: none;
+                padding-top: 10px;
+                padding-left: 10px;
+                a{
+                    display: block;
+                    font-weight: 400;
+                }
             }
         }
     }
