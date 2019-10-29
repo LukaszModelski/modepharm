@@ -1,14 +1,19 @@
 <template>
     <div id="menu">
         <div v-on:click="toggleMenuAndOpacity" class="close">
-            X
+            <div class="close-icon">
+                <Close />
+            </div>
+            <div class="hamburger-icon">
+               <Hamburger />
+            </div>
         </div>
         <nav>
             <div class="menu">
                 <div class="single-item parent">
                     <router-link :to="{path: '/'}" exact class="nav-item">Strona główna</router-link>
                 </div>
-                <div v-for="(item, key) in menu" class="single-item parent">
+                <div v-for="(item, key) in menu" class="single-item parent" :class="{'dropdown-open': openDropdowns[key]}">
                     <router-link 
                         v-if="item.type == 'page'"
                         :to="{ path: '/' + item.full_slug }"
@@ -17,7 +22,7 @@
                     >
                         {{item.title}}
                     </router-link>
-                    <div class="arrow-head" v-on:click="toggleDropdown"></div>
+                    <div class="arrow-head" v-if="item['child-pages']" v-on:click="toggleDropdown(key)"></div>
                     <div class="dropdown">
                         <router-link 
                             v-for="subitem in item['child-pages']" :key="subitem.page_id"
@@ -35,43 +40,52 @@
 </template>
 
 <script>
-    export default {
-        name: 'Menu',
-        props: {
-            menu: Object
-        },
-        data () {
-            return {
-                menuClosed: true,
-            }
-        },
-        methods: {
-            toggleMenuAndOpacity(){
-                const menu = document.getElementById('menu');
-                const content = document.getElementById('main-content');
-                menu.classList.toggle('active');
-                content.classList.toggle('menu-active');
-            },
-            toggleDropdown() {
-                // TO DO
-                console.log(this.$parent);
-            }
-        },
-        watch: {
-            
-        },
-        created: function () {
-            
+import Hamburger from "./icons/Hamburger.vue";
+import Close from "./icons/Close.vue";
+export default {
+    name: 'Menu',
+    components: {
+        Hamburger,
+        Close
+    },
+    props: {
+        menu: Object
+    },
+    data () {
+        return {
+            menuClosed: true,
+            openDropdowns: {},
+            menuActive: false
         }
+    },
+    methods: {
+        toggleMenuAndOpacity(){
+            const menu = document.getElementById('menu');
+            const content = document.getElementById('main-content');
+            menu.classList.toggle('active');
+            content.classList.toggle('menu-active');
+        },
+        toggleDropdown(key) {
+            this.$set(this.openDropdowns, key, !this.openDropdowns[key]);
+        },
+        createOpenDropdowns() {
+            for ( var key in this.menu ) {
+                this.$set(this.openDropdowns, key, false);
+            }
+        }
+    },
+    watch: {
+        
+    },
+    created: function () {
+        this.createOpenDropdowns();
     }
+}
 </script>
 
 <style  lang="scss" scoped>
 @import '../styles/vars';
 
-#menu.active{
-    right: 0px;
-}
 #menu{
     position: fixed;
     z-index: 10;
@@ -87,9 +101,16 @@
     .close{
         position: absolute;
         top: 0;
-        left: -50px;
+        left: -60px;
         padding: 15px;
         cursor: pointer;
+        .hamburger-icon {
+            width: 28px;
+        }
+        .close-icon {
+            width: 22px;
+            display: none;
+        }
     }
     nav{
         div{
@@ -151,6 +172,15 @@
                 }
             }
         }
+    }
+}
+#menu.active{
+    right: 0px;
+    .hamburger-icon {
+        display: none;
+    }
+    .close-icon {
+        display: block;
     }
 }
 </style>

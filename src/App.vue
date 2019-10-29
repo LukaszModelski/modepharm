@@ -22,14 +22,14 @@ import Home from './components/Home.vue'
 import Category from './components/Category.vue'
 import Menu from './components/Menu.vue'
 import Page from './components/Page.vue'
+import Hamburger from './components/icons/Hamburger.vue'
 
 export default {
   name: 'app',
   components: {
     Home,
     Category,
-    Menu,
-    Page
+    Menu
   },
   metaInfo: {
     title: 'Modepharm',
