@@ -13,7 +13,7 @@
                 <div class="single-item parent">
                     <router-link :to="{path: '/'}" exact class="nav-item">Strona główna</router-link>
                 </div>
-                <div v-for="(item, key) in menu" class="single-item parent" :class="{'dropdown-open': openDropdowns[key]}">
+                <div v-for="(item, key) in menu" v-bind:key="key" class="single-item parent" :class="{'dropdown-open': openDropdowns[key]}">
                     <router-link 
                         v-if="item.type == 'page'"
                         :to="{ path: '/' + item.full_slug }"

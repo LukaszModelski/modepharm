@@ -6,7 +6,7 @@
     <div id="main-content">
       <div class="container">
         <router-link :to="{ path: '/' }">
-          <h1 class="company-name">Modepharm</h1>
+          <h2 class="company-name">Modepharm</h2>
         </router-link>
         <transition name="fade" mode="out-in">
           <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
@@ -17,30 +17,18 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Home from './components/Home.vue'
-import Category from './components/Category.vue'
+import axios from 'axios'
 import Menu from './components/Menu.vue'
-import Page from './components/Page.vue'
-import Hamburger from './components/icons/Hamburger.vue'
 
 export default {
   name: 'app',
   components: {
-    Home,
-    Category,
     Menu
-  },
-  metaInfo: {
-    title: 'Modepharm',
-    meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ]
   },
   data () {
     return {
-        fullData: Object,
-        fullDataLoaded: false,
+        fullData: null,
+        fullDataLoaded: false
     }
   },
   methods: {
@@ -52,7 +40,7 @@ export default {
           window.addEventListener('keyup', this.closeMenu);
       })
       .catch((error) => {
-          console.log(error)
+          alert(error);
       })
     },
     closeMenu(event){
