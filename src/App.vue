@@ -6,24 +6,27 @@
     <div id="main-content">
       <div class="container">
         <router-link :to="{ path: '/' }">
-          <h2 class="company-name">Modepharm</h2>
+          <h2 class="company-name">modepharm</h2>
         </router-link>
         <transition name="fade" mode="out-in">
           <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
         </transition>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Menu from './components/Menu.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'app',
   components: {
-    Menu
+    Menu,
+    Footer
   },
   data () {
     return {
@@ -69,12 +72,12 @@ body{
   #app {
     font-size: 15px;
     margin-top: 4rem;
-    margin-bottom: 4rem;
     #main-content.menu-active{
       opacity: 0.25;
     }
     #main-content{
       transition: opacity 0.3s ease-in;
+      margin-bottom: 100px;
     }
   }
 }

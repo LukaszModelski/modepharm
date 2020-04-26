@@ -3,7 +3,7 @@
         <h1>{{categoryObject.title}}</h1>
         <div class="wyswyg-content" v-html="categoryObject.post_content"></div>
         <section class="grid-tiles grid-tiles--category">
-            <div v-for="item in categoryObject['child-pages']" class="tile" v-bind:style="{ backgroundImage: 'url(' + item['tile_img'] + ')' }">
+            <div v-for="(item, name, i) in categoryObject['child-pages']" class="tile" v-bind:style="{ backgroundImage: 'url(' + item['tile_img'] + ')' }">
                 <router-link 
                     v-if="item.type == 'page'"
                     :to="{ path: '/' + item.full_slug }"
@@ -11,13 +11,18 @@
                 >
                     <h2>{{item.title}}</h2>
                 </router-link>
-                <div class="tile__color" v-bind:style="{ backgroundColor: item['tile_color'] }"></div>
+                <!-- color from wp admin panel -->
+                <!-- <div class="tile__color" v-bind:style="{ backgroundColor: item['tile_color'] }"></div> -->
+
+                <!-- color from tiles-colors.js -->
+                <div class="tile__color" v-bind:style="{ backgroundColor: tilesColors[i % tilesColors.length] }"></div>
             </div>
         </section>
     </div>
 </template>
 
 <script>
+    import { tilesColors } from "../utils/tiles-colors.js";
     export default {
         name: 'Category',
         props: {
@@ -26,7 +31,8 @@
         data () {
             return {
                 fullData: Object,
-                categoryObject: Object
+                categoryObject: Object,
+                tilesColors: tilesColors
             }
         },
         metaInfo () {

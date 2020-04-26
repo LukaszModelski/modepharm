@@ -1,7 +1,7 @@
 <template>
     <div id="page-single" class="page" v-if="this.$parent.fullDataLoaded">
         <h1>{{pageObject.post_title}}</h1>
-        <picture class="main-image">
+        <picture v-if="pageObject.main_image" class="main-image">
             <source media="(min-width: 1468px)" :srcset="pageObject.main_image.url">
             <source media="(min-width: 1100px)" :srcset="pageObject.main_image.sizes.large">
             <source media="(min-width: 1px)" :srcset="pageObject.main_image.sizes.medium_large">
