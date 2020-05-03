@@ -1,0 +1,22 @@
+.breadcrumbs {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+
+	.breadcrumb-item {
+		display: block;
+		font-size: 1.15rem;
+		padding: 0 10px 10px 10px;
+	}
+
+	a {
+		font-weight: 500;
+
+		&:hover {
+			color: #000;
+		}
+	}
+}

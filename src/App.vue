@@ -62,6 +62,7 @@ export default {
 @import 'styles/fonts';
 @import 'styles/vars';
 @import 'styles/global';
+@import 'styles/breadcrumbs';
 body{
   position: absolute;
   overflow-x: hidden;

@@ -13,6 +13,12 @@ Vue.mixin({
           menu.classList.remove('active');
           content.classList.remove('menu-active');
       }
+    },
+    findPageByID(id, pagesObject) {
+      const page = Object.values(pagesObject).find(element => {
+        return element.ID === id;
+      });
+      return page;
     }
   }
 })
