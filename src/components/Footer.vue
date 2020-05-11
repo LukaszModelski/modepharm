@@ -3,6 +3,9 @@
 		<div class="container">
 			<div class="contact-form">
 				<h2>Wyślij zapytanie</h2>
+				<iframe 
+					src="http://modepharm.pl/contact-form/form.php">
+				</iframe>
 			</div>
 			<div class="contact-details">
 				<h2>Dane kontaktowe</h2>
@@ -17,6 +20,7 @@
 </template>
 
 <script>
+
 export default {
 	data () {
 		return {
@@ -66,6 +70,10 @@ export default {
 		p {
 			margin: 0;
 		}
+	}
+
+	iframe {
+		border: 0;
 	}
 }
 
