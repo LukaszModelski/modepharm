@@ -17,10 +17,11 @@
 </template>
 
 <script>
+	import { stripHtml } from "../utils/utils.js";
 	export default {
 		name: 'Page',
 		props: {
-			
+		
 		},
 		data () {
 			return {
@@ -30,29 +31,29 @@
         parentPagetTitle: ''
 			}
 		},
-		// watch: {
-		//     '$route' (to, from) {
-		//         if(this.$route.params.slug2){
-		//             this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
-		//         } else {
-		//             this.pageObject = this.$parent.fullData.pages[this.$route.params.slug];
-		//         }
-		//     }
-		// },
+		metaInfo () {
+			return {
+				title: `Modepharm - ${this.pageObject.post_title}`,
+				meta: [
+					{ name: 'description', content: this.metaDesc }
+				]
+			}
+		},
 		created: function () {
-      this.fullData = this.$parent.fullData;
+			this.fullData = this.$parent.fullData;
      
 			if(this.$route.params.slug2){
 				this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
 			} else {
 				this.pageObject = this.$parent.fullData.pages[this.$route.params.slug];
-      }
+			}
 
-      this.parentPage =  this.findPageByID(this.pageObject.post_parent, this.fullData.pages);
-      this.parentPagetTitle = this.parentPage.post_title;
+			this.parentPage =  this.findPageByID(this.pageObject.post_parent, this.fullData.pages);
+			this.parentPagetTitle = this.parentPage.post_title;
+			this.metaDesc = stripHtml(this.pageObject.post_content);
 		},
 		destroyed(){
-      this.closeMenuMixin();
+			this.closeMenuMixin();
 		}
 	}
 </script>

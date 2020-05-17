@@ -27,6 +27,8 @@
 
 <script>
 import { tilesColors } from "../utils/tiles-colors.js";
+import { stripHtml } from "../utils/utils.js";
+
 export default {
   name: 'Category',
   props: {
@@ -43,7 +45,7 @@ export default {
     return {
       title: `Modepharm - ${this.categoryObject.title}`,
       meta: [
-        { name: 'description', content: this.categoryObject.post_content }
+        { name: 'description', content: this.metaDesc }
       ]
     }
   },
@@ -54,6 +56,7 @@ export default {
     this.fullData = this.$parent.fullData;
     this.categoryObject = this.fullData.menu[this.$route.params.slug];
     this.categoryObject.post_content = this.fullData.pages[this.$route.params.slug].post_content;
+    this.metaDesc = stripHtml(this.categoryObject.post_content);
   },
   destroyed(){
     this.closeMenuMixin();
