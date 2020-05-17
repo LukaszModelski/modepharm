@@ -14,6 +14,7 @@
       </div>
     </div>
     <Footer/>
+    <Cookies/>
   </div>
 </template>
 
@@ -21,12 +22,14 @@
 import axios from 'axios'
 import Menu from './components/Menu.vue'
 import Footer from './components/Footer.vue'
+import Cookies from './components/Cookies.vue'
 
 export default {
   name: 'app',
   components: {
     Menu,
-    Footer
+    Footer,
+    Cookies
   },
   data () {
     return {
@@ -78,7 +81,7 @@ body{
     }
     #main-content{
       transition: opacity 0.3s ease-in;
-      margin-bottom: 100px;
+      margin-bottom: 50px;
     }
   }
 }

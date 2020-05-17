@@ -28,36 +28,49 @@ body{
 h1{
     margin-top: 0;
     margin-bottom: 30px;
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'Source Sans Pro';
     font-weight: 700;
+
+    @media screen and (min-width: $tablet) {
+        font-size: 3rem;
+    }
 }
-// h2.company-name{
-//     font-size: 1.4rem;
-//     font-weight: 700;
-//     text-transform: uppercase;
-//     letter-spacing: 2px;
-// }
 h2.company-name{
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 700;
     padding: 2px 10px;
-    background-color: blue;
+    background-color: $modepharm;
     color: #fff;
     text-align: right;
     font-family: "Arial";
 }
+h1, h2, h3, h4, h5 {
+    color: $gray-light;
+}
 p {
-    font-size: 1.15rem;
+    font-size: 1.0rem;
     line-height: 1.8rem;
     font-weight: 300;
+
+    @media screen and (min-width: $tablet) {
+        font-size: 1.15rem;
+    }
 }
 a{
     text-decoration: none;
     color: unset;
+    font-weight: 400;
 }
 li {
-    font-size: 1.15rem;
+    font-size: 1.0rem;
     line-height: 1.8rem;
     margin-bottom: 5px;
+
+    @media screen and (min-width: $tablet) {
+        font-size: 1.15rem;
+    }
+}
+.wyswyg-content {
+    margin: 50px 0;
 }

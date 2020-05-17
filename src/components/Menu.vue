@@ -90,14 +90,19 @@ export default {
     position: fixed;
     z-index: 10;
     top: 0;
-    right: -400px;
+    right: -300px;
+    width: 300px;
     height: 100vh;
-    width: 400px;
     max-width: 100%;
     background-color: $gray;
     transition: right 0.3s ease-in;
     padding: 30px;
     box-sizing: border-box;
+
+    @media screen and (min-width: $tablet) {
+        right: -400px;
+        width: 400px;
+    }
     .close{
         position: absolute;
         top: 0;
@@ -110,6 +115,10 @@ export default {
         .close-icon {
             width: 22px;
             display: none;
+            left: auto;
+            right: 0px;
+
+
         }
     }
     nav{
@@ -176,11 +185,29 @@ export default {
 }
 #menu.active{
     right: 0px;
-    .hamburger-icon {
-        display: none;
-    }
-    .close-icon {
-        display: block;
+    .close {
+        left: auto;
+        right: 0; 
+
+        @media screen and (min-width: $tablet) {
+            top: 0;
+            left: -60px;
+        }
+
+        svg {
+            filter: brightness(3.5);
+
+            @media screen and (min-width: $tablet) {
+                filter: brightness(1);
+            }
+        }
+
+        .hamburger-icon {
+            display: none;
+        }
+        .close-icon {
+            display: block;
+        }
     }
 }
 </style>

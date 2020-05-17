@@ -1,6 +1,9 @@
 <template>
     <div id="page-home" v-if="this.$parent.fullDataLoaded">
         <h1>{{fullData['home-page']['post_title']}}</h1>
+        <div class="breadcrumbs">
+            <span class="breadcrumb-item">Strona główna /</span>
+        </div>
         <div class="wyswyg-content" v-html="fullData['home-page']['post_content']"></div>
         <section class="grid-tiles">
             <div ref="tile" v-for="(item, name, i) in fullData.menu" v-if="item.parent == 0" class="tile" v-bind:style="{ backgroundImage: 'url(' + item['tile_img'] + ')' }">

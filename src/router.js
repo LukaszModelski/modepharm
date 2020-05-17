@@ -14,5 +14,8 @@ export default new Router({
         { path: '/', component: Home },
         { path: '/:slug/', component: Category },
         { path: '/:slug/:slug2', component: Page }
-    ]
+    ],
+    // scrollBehavior (to, from, savedPosition) {
+    //     return { x: 0, y: 0 };
+    // }
 });

@@ -40,7 +40,11 @@ export default {
 
 #footer {
 	background-color: #f6f6f6;
-	padding: 5rem 0 7rem;
+	padding: 2rem 0;
+
+	@media screen and (min-width: $tablet) {
+		padding: 3.5rem 0;
+	}
 
 	h2 {
 		text-transform: uppercase;
@@ -58,6 +62,8 @@ export default {
 		width: 100%;
 		@media screen and (min-width: $tablet) {
 			width: 66.6%;
+			padding-right: 70px;
+			box-sizing: border-box;
 		}
 	}
 
@@ -73,7 +79,13 @@ export default {
 	}
 
 	iframe {
+		width: 100%;
+		height: 500px;
 		border: 0;
+
+		@media screen and (min-width: $tablet) {
+			height: 400px;
+		}
 	}
 }
 
