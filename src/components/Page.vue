@@ -25,10 +25,10 @@
 		},
 		data () {
 			return {
-        fullData: Object,
-        pageObject: Object,
-        parentPage: Object,
-        parentPagetTitle: ''
+				fullData: Object,
+				pageObject: Object,
+				parentPage: Object,
+				parentPagetTitle: ''
 			}
 		},
 		metaInfo () {
@@ -46,6 +46,10 @@
 				this.pageObject = this.$parent.fullData.pages[this.$route.params.slug + '/' + this.$route.params.slug2];
 			} else {
 				this.pageObject = this.$parent.fullData.pages[this.$route.params.slug];
+			}
+
+			if(!this.pageObject) {
+				this.$router.push('/page-not-found');
 			}
 
 			this.parentPage =  this.findPageByID(this.pageObject.post_parent, this.fullData.pages);

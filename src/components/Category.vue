@@ -55,6 +55,11 @@ export default {
   created: function () {
     this.fullData = this.$parent.fullData;
     this.categoryObject = this.fullData.menu[this.$route.params.slug];
+
+    if(!this.categoryObject) {
+      this.$router.push('/page-not-found');
+    }
+      
     this.categoryObject.post_content = this.fullData.pages[this.$route.params.slug].post_content;
     this.metaDesc = stripHtml(this.categoryObject.post_content);
   },
