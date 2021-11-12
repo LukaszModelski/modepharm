@@ -8,6 +8,7 @@
         <router-link :to="{ path: '/' }">
           <h2 class="company-name">modepharm</h2>
         </router-link>
+        <Loader v-if="!fullDataLoaded"/>
         <transition name="fade" mode="out-in">
           <router-view :key="$route.path" v-if="fullDataLoaded"></router-view> 
         </transition>
@@ -23,14 +24,16 @@ import axios from 'axios'
 import Menu from './components/Menu.vue'
 import Footer from './components/Footer.vue'
 import Cookies from './components/Cookies.vue'
+import Loader from './components/Loader.vue'
 
 export default {
   name: 'app',
   components: {
     Menu,
     Footer,
-    Cookies
-  },
+    Cookies,
+    Loader
+},
   data () {
     return {
         fullData: null,
@@ -39,15 +42,18 @@ export default {
   },
   methods: {
     loadFullData(){
-      axios.get('http://www.modepharm.pl/cms/wp-json/modepharm/all')
-      .then((response) => {
-          this.fullData = response.data;
-          this.fullDataLoaded = true;
-          window.addEventListener('keyup', this.closeMenu);
-      })
-      .catch((error) => {
-          alert(error);
-      })
+      const wordPressEndpoint = (window.location.hostname === 'localhost')
+        ? 'https://www.modepharm.pl/cms/wp-json/modepharm/all'
+        : window.location.origin + '/cms/wp-json/modepharm/all';
+      axios.get(wordPressEndpoint)
+        .then((response) => {
+            this.fullData = response.data;
+            this.fullDataLoaded = true;
+            window.addEventListener('keyup', this.closeMenu);
+        })
+        .catch((error) => {
+            alert(error);
+        })
     },
     closeMenu(event){
       if(event.key === "Escape"){
