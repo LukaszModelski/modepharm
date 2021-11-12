@@ -1,21 +1,34 @@
 <template>
 	<div v-if="showCookies" id="cookies">
 		<p>	Strona wykorzystuje pliki cookies w celu prawidłowego działania serwisu. Możesz określić warunki przechowywania lub dostępu do cookie w Twojej przeglądarce.</p>
-		<button v-on:click="showCookies = false" class="accept-btn">Akceptuję</button>
+		<button v-on:click="acceptCookies" class="accept-btn">Akceptuję</button>
 	</div>
 </template>
 
 <script>
+import Cookies from 'js-cookie';
 
 export default {
 	data () {
 		return {
-			showCookies: true
+			showCookies: false
 		}
 	},
 	methods: {
-
-	}
+		acceptCookies() {
+			Cookies.set('cookiesAccepted', true, { expires: 30 });
+			this.showCookies = false;
+		},
+		checkCookies() {
+			var cookiesAccepted = Cookies.get('cookiesAccepted');
+			if(!cookiesAccepted) {
+				this.showCookies = true;
+			}
+		}
+	},
+	created(){
+    this.checkCookies();
+  }
 }
 </script>
 

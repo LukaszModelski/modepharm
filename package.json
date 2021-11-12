@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "js-cookie": "^3.0.1",
     "vue": "^2.6.6",
     "vue-meta": "^1.6.0",
     "vue-router": "^3.0.2"
