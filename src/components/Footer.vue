@@ -14,6 +14,10 @@
 				<p>tel.: 607143434, 603163901</p>
 				<p>email: biuro@modepharm.pl</p>
 				<p>NIP: 7811215436</p>
+				<br />
+				<a href="./Polityka-prywatności-MODEPHARM-Jacek-Modelski.pdf" target="_blank">
+					<p><b>Polityka prywatności</b></p>
+				</a>
 			</div>
 		</div>
 	</div>

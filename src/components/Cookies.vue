@@ -1,6 +1,11 @@
 <template>
 	<div v-if="showCookies" id="cookies">
-		<p>	Strona wykorzystuje pliki cookies w celu prawidłowego działania serwisu. Możesz określić warunki przechowywania lub dostępu do cookie w Twojej przeglądarce.</p>
+		<p>
+		Informacje na temat polityki prywatności zamieszczone są
+			<a href="./Polityka-prywatności-MODEPHARM-Jacek-Modelski.pdf" target="_blank">
+				<b>tutaj</b>
+			</a>
+		</p>
 		<button v-on:click="acceptCookies" class="accept-btn">Akceptuję</button>
 	</div>
 </template>
